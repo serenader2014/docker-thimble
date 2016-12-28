@@ -1,7 +1,7 @@
 FROM node:6.9.0
 MAINTAINER serenader xyslive@gmail.com
 
-RUN apt-get update && apt-get install git -y gcc build-essential postgresql-9.4 postgresql-client-9.4 \
+RUN apt-get update && apt-get install -y build-essential postgresql-9.4 postgresql-client-9.4 \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /var/thimble
