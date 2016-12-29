@@ -1,4 +1,4 @@
-FROM node:6.9.0
+FROM node:4.4.4
 MAINTAINER serenader xyslive@gmail.com
 
 RUN apt-get update && apt-get install -y build-essential postgresql-9.4 postgresql-client-9.4 \
