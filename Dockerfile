@@ -1,8 +1,8 @@
 FROM node:4.4.4
 MAINTAINER serenader xyslive@gmail.com
 
-ENV $THIMBLE_DB_PUBLISH publish
-ENV $THIMBLE_DB_OAUTH webmaker_oauth_test
+ENV THIMBLE_DB_PUBLISH publish
+ENV THIMBLE_DB_OAUTH webmaker_oauth_test
 ENV THIMBLE_DB_USER thimble
 ENV THIMBLE_DB_PASSWORD password
 ENV THIMBLE_DB_PORT 5432
