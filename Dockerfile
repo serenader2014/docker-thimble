@@ -1,8 +1,21 @@
 FROM node:4.4.4
 MAINTAINER serenader xyslive@gmail.com
 
+ENV $THIMBLE_DB_PUBLISH publish
+ENV $THIMBLE_DB_OAUTH webmaker_oauth_test
+ENV THIMBLE_DB_USER thimble
+ENV THIMBLE_DB_PASSWORD password
+ENV THIMBLE_DB_PORT 5432
+ENV THIMBLE_DB_HOST 127.0.0.1
+
 RUN apt-get update && apt-get install -y build-essential postgresql-9.4 postgresql-client-9.4 \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && service postgresql start \
+    && su - postgres -c "psql -c \"CREATE USER $THIMBLE_DB_USER WITH PASSWORD '$THIMBLE_DB_PASSWORD'\"" \
+    && su - postgres -c "psql -c \"CREATE DATABASE $THIMBLE_DB_PUBLISH OWNER thimble\"" \
+    && su - postgres -c "psql -c \"CREATE DATABASE $THIMBLE_DB_OAUTH OWNER thimble\"" \
+    && su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $THIMBLE_DB_PUBLISH to thimble\"" \
+    && su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $THIMBLE_DB_OAUTH to thimble\""
 
 WORKDIR /var/thimble
 
