@@ -1,0 +1,35 @@
+server {
+    server_name THIMBLE_HOST ;
+    listen 80;
+    location / {
+        proxy_pass http://localhost:3500;
+    }
+}
+server {
+    server_name BRAMBLE_HOST ;
+    listen 80;
+    location / {
+        proxy_pass http://localhost:8000;
+    }
+}
+server {
+    server_name ID_HOST ;
+    listen 80;
+    location / {
+        proxy_pass http://localhost:1234;
+    }
+}
+server {
+    server_name LOGIN_HOST ;
+    listen 80;
+    location / {
+        proxy_pass http://localhost:3000;
+    }
+}
+server {
+    server_name PUBLISHED_HOST ;
+    listen 80;
+    location / {
+        proxy_pass http://localhost:8001;
+    }
+}
